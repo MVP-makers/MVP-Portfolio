@@ -2,36 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-.tw {
-  color: white !important;
-}
 @layer base {
   html {
     @apply scroll-smooth;
   }
   
   body {
-    @apply font-inter antialiased bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100;
+    @apply antialiased bg-zinc-950 text-zinc-100;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold leading-tight;
-  }
-  
-  h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
-  }
-  
-  h2 {
-    @apply text-3xl md:text-4xl;
-  }
-  
-  h3 {
-    @apply text-2xl md:text-3xl;
-  }
-  
-  h4 {
-    @apply text-xl md:text-2xl;
+    @apply font-semibold leading-tight tracking-tight;
   }
   
   p {
@@ -41,38 +22,42 @@
 
 @layer components {
   .container-custom {
-    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+    @apply container mx-auto px-5 sm:px-6 lg:px-8 max-w-6xl;
   }
   
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
   }
   
   .btn {
-    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 disabled:pointer-events-none disabled:opacity-50;
   }
   
   .btn-primary {
-    @apply btn bg-primary-500 text-white hover:bg-primary-600 focus-visible:ring-primary-500 dark:bg-primary-600 dark:hover:bg-primary-700;
-  }
-  
-  .btn-secondary {
-    @apply btn bg-secondary-500 text-white hover:bg-secondary-600 focus-visible:ring-secondary-500;
+    @apply btn bg-emerald-500 text-zinc-950 hover:bg-emerald-400 focus-visible:ring-emerald-500;
   }
   
   .btn-outline {
-    @apply btn border border-slate-300 bg-transparent hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800;
+    @apply btn border border-zinc-700 bg-transparent text-zinc-100 hover:bg-zinc-800 hover:border-zinc-600;
   }
   
   .card {
-    @apply rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg dark:bg-slate-800/50;
+    @apply rounded-xl bg-zinc-900 border border-zinc-800 p-6 transition-all hover:border-zinc-700;
   }
   
   .input {
-    @apply flex h-10 w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-400 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700;
+    @apply flex h-11 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50;
   }
   
   .textarea {
-    @apply flex min-h-[80px] w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-400 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700;
+    @apply flex min-h-[100px] w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-zinc-100;
+  }
+  
+  .section-subtitle {
+    @apply text-zinc-400 max-w-2xl;
   }
 }

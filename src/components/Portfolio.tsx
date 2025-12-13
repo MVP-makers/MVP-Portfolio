@@ -1,148 +1,73 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ExternalLink } from 'lucide-react';
-import Section from './ui/Section';
-import SectionHeading from './ui/SectionHeading';
-import { PortfolioItem } from '../types';
-import { staggerContainer, fadeInUp, scaleIn } from '../utils/animations';
-import { cn } from '../utils/cn';
 
-const portfolioItems: PortfolioItem[] = [
+const projects = [
   {
-    id: 1,
-    title: 'Modern E-Commerce Platform',
-    description: 'A sleek e-commerce solution with a focus on user experience and mobile responsiveness.',
-    imageUrl: 'https://images.pexels.com/photos/6956892/pexels-photo-6956892.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    category: 'Web Development',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    link: '#'
+    title: 'AI Tutoring Platform',
+    description: 'Intelligent tutoring with AI agents, RAG architecture, and real-time streaming responses.',
+    tech: ['React', 'FastAPI', 'LangChain', 'PostgreSQL'],
+    category: 'AI'
   },
   {
-    id: 2,
-    title: 'Portfolio Website Generator',
-    description: 'An AI-powered tool that creates personalized portfolio websites for professionals.',
-    imageUrl: 'https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    category: 'AI Automation',
-    technologies: ['Next.js', 'OpenAI', 'Tailwind CSS', 'Vercel'],
-    link: '#'
+    title: 'Wardrobe AI',
+    description: 'Mobile wardrobe management with AI outfit suggestions and AWS S3 image storage.',
+    tech: ['React Native', 'FastAPI', 'AWS S3'],
+    category: 'Mobile'
   },
   {
-    id: 3,
-    title: 'Business Analytics Dashboard',
-    description: 'Interactive dashboard showcasing key business metrics and insights.',
-    imageUrl: 'https://images.pexels.com/photos/7567444/pexels-photo-7567444.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    category: 'Business Analytics',
-    technologies: ['React', 'D3.js', 'Firebase', 'Material-UI'],
-    link: '#'
+    title: 'Court Booking System',
+    description: 'Sports facility booking platform with scheduling and reservation management.',
+    tech: ['React', 'Node.js', 'PostgreSQL'],
+    category: 'Web'
   },
   {
-    id: 4,
-    title: 'Task Management App',
-    description: 'A collaborative project management tool with real-time updates and team features.',
-    imageUrl: 'https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    category: 'Software Development',
-    technologies: ['Vue.js', 'Express', 'Socket.io', 'PostgreSQL'],
-    link: '#'
+    title: 'Interview Prep App',
+    description: 'Visa interview preparation platform with practice questions and tips.',
+    tech: ['React', 'TypeScript'],
+    category: 'Web'
   }
 ];
 
-const categories = ['All', 'Web Development', 'Software Development', 'AI Automation', 'Business Analytics'];
-
-const Portfolio: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const filteredItems = activeCategory === 'All'
-    ? portfolioItems
-    : portfolioItems.filter(item => item.category === activeCategory);
+const Portfolio = () => {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <Section id="portfolio">
-      <SectionHeading
-        title="Our Portfolio"
-        subtitle="Explore our recent projects and see how we're helping businesses transform their digital presence."
-      />
-      
-      {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-2 mb-12">
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setActiveCategory(category)}
-            className={cn(
-              'px-4 py-2 rounded-full text-sm transition-colors',
-              activeCategory === category
-                ? 'bg-primary-500 text-white dark:bg-primary-400'
-                : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700'
-            )}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-      
-      <motion.div
-        ref={ref}
-        variants={staggerContainer}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-        className="grid grid-cols-1 md:grid-cols-2 gap-8"
-      >
-        {filteredItems.map((item) => (
-          <motion.div
-            key={item.id}
-            variants={fadeInUp}
-            className="card group overflow-hidden"
-          >
-            <div className="relative h-48 overflow-hidden rounded-lg mb-4">
-              <motion.img 
-                variants={scaleIn}
-                src={item.imageUrl} 
-                alt={item.title} 
-                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                <div className="p-4 text-white">
-                  <span className="text-xs font-medium px-2 py-1 rounded-full bg-primary-500">{item.category}</span>
-                </div>
+    <section id="portfolio" className="section-padding">
+      <div className="container-custom">
+        <div className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mb-4">Recent work</h2>
+          <p className="text-zinc-400 max-w-xl">Projects we've built for clients and ourselves.</p>
+        </div>
+
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        >
+          {projects.map((project, i) => (
+            <motion.div
+              key={i}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              className="p-6 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-colors"
+            >
+              <span className="text-xs text-emerald-400 font-medium">{project.category}</span>
+              <h3 className="text-lg font-semibold text-zinc-100 mt-1 mb-2">{project.title}</h3>
+              <p className="text-sm text-zinc-400 mb-4">{project.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((t, j) => (
+                  <span key={j} className="text-xs px-2 py-1 rounded-md bg-zinc-800 text-zinc-400">{t}</span>
+                ))}
               </div>
-            </div>
-            
-            <h4 className="text-xl font-semibold group-hover:text-primary-400 transition-colors">
-              {item.title}
-            </h4>
-            
-            <p className="text-sm my-3">
-              {item.description}
-            </p>
-            
-            <div className="flex flex-wrap gap-2 mb-4">
-              {item.technologies.map((tech, index) => (
-                <span 
-                  key={index}
-                  className="text-xs px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-            
-            {item.link && (
-              <a 
-                href={item.link} 
-                className="inline-flex items-center text-primary-500 hover:text-primary-600 dark:text-primary-200 dark:hover:text-white text-sm font-medium"
-              >
-                View Project <ExternalLink className="ml-1 h-4 w-4" />
-              </a>
-            )}
-          </motion.div>
-        ))}
-      </motion.div>
-    </Section>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

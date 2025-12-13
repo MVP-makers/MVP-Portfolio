@@ -1,210 +1,59 @@
-import React from 'react';
 import { Link } from 'react-scroll';
-import { 
-  Laptop2, 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
-  Github, 
-  Instagram, 
-  ArrowUpCircle 
-} from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
 
-const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-  
+const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-white">
-      <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <div className="flex items-center">
-              <Laptop2 className="h-8 w-8 text-primary-400 mr-2" />
-              <span className="text-xl font-bold">MVP Makers</span>
-            </div>
-            <p className="text-slate-400">
-              Transforming ideas into digital excellence with cutting-edge technology solutions.
+    <footer className="border-t border-zinc-800">
+      <div className="container-custom py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="md:col-span-2">
+            <h3 className="text-lg font-bold text-zinc-100 mb-2">MVP Makers</h3>
+            <p className="text-sm text-zinc-400 mb-4 max-w-sm">
+              Custom software development from Hyderabad, India. Web apps, desktop software, mobile apps, and AI solutions.
             </p>
-            <div className="flex space-x-4">
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-primary-400 transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
+            <div className="flex flex-col gap-2 text-sm">
+              <a href="mailto:contact@mvpmakers.in" className="flex items-center gap-2 text-zinc-400 hover:text-emerald-400 transition-colors">
+                <Mail className="h-4 w-4" /> contact@mvpmakers.in
               </a>
-              <a 
-                href="https://twitter.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-primary-400 transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
+              <a href="tel:+918125544202" className="flex items-center gap-2 text-zinc-400 hover:text-emerald-400 transition-colors">
+                <Phone className="h-4 w-4" /> +91 8125544202
               </a>
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-primary-400 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-primary-400 transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-primary-400 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
+              <span className="flex items-center gap-2 text-zinc-400">
+                <MapPin className="h-4 w-4" /> Hyderabad, India
+              </span>
             </div>
           </div>
-          
+
           <div>
-            <h4 className="text-lg font-semibold mb-4">Services</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-slate-400 hover:text-primary-400 transition-colors">
-                  Web Development
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-slate-400 hover:text-primary-400 transition-colors">
-                  Software Development
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-slate-400 hover:text-primary-400 transition-colors">
-                  AI Automation
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-slate-400 hover:text-primary-400 transition-colors">
-                  Business Analytics
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-slate-400 hover:text-primary-400 transition-colors">
-                  Cloud Solutions
-                </a>
-              </li>
+            <h4 className="font-medium text-zinc-100 mb-3">Services</h4>
+            <ul className="space-y-2 text-sm text-zinc-400">
+              <li><Link to="services" spy smooth offset={-100} className="hover:text-emerald-400 cursor-pointer transition-colors">Web Apps</Link></li>
+              <li><Link to="services" spy smooth offset={-100} className="hover:text-emerald-400 cursor-pointer transition-colors">Desktop Software</Link></li>
+              <li><Link to="services" spy smooth offset={-100} className="hover:text-emerald-400 cursor-pointer transition-colors">Mobile Apps</Link></li>
+              <li><Link to="services" spy smooth offset={-100} className="hover:text-emerald-400 cursor-pointer transition-colors">AI Solutions</Link></li>
             </ul>
           </div>
-          
+
           <div>
-            <h4 className="text-lg font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  to="about"
-                  spy={true}
-                  smooth={true}
-                  offset={-100}
-                  duration={500}
-                  className="text-slate-400 hover:text-primary-400 transition-colors cursor-pointer"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="portfolio"
-                  spy={true}
-                  smooth={true}
-                  offset={-100}
-                  duration={500}
-                  className="text-slate-400 hover:text-primary-400 transition-colors cursor-pointer"
-                >
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="careers"
-                  spy={true}
-                  smooth={true}
-                  offset={-100}
-                  duration={500}
-                  className="text-slate-400 hover:text-primary-400 transition-colors cursor-pointer"
-                >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="text-slate-400 hover:text-primary-400 transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-slate-400 hover:text-primary-400 transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2">
-              <li className="text-slate-400">
-                Hyderabad, Telangana, India <br />
-                
-              </li>
-              <li>
-                <a 
-                  href="mailto:info@mvpmakers.com" 
-                  className="text-slate-400 hover:text-primary-400 transition-colors"
-                >
-                  info@mvpmakers.com
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="tel:+14155550123" 
-                  className="text-slate-400 hover:text-primary-400 transition-colors"
-                >
-                  +91 8125544202
-                </a>
-              </li>
+            <h4 className="font-medium text-zinc-100 mb-3">Company</h4>
+            <ul className="space-y-2 text-sm text-zinc-400">
+              <li><Link to="portfolio" spy smooth offset={-100} className="hover:text-emerald-400 cursor-pointer transition-colors">Work</Link></li>
+              <li><Link to="pawnbroker" spy smooth offset={-100} className="hover:text-emerald-400 cursor-pointer transition-colors">Products</Link></li>
+              <li><Link to="about" spy smooth offset={-100} className="hover:text-emerald-400 cursor-pointer transition-colors">About</Link></li>
+              <li><Link to="contact" spy smooth offset={-100} className="hover:text-emerald-400 cursor-pointer transition-colors">Contact</Link></li>
             </ul>
           </div>
         </div>
-        
-        <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-500 text-sm">
-            &copy; {currentYear} MVP Makers. All rights reserved.
-          </p>
-          <div className="mt-4 md:mt-0">
-            <Link
-              to="home"
-              spy={true}
-              smooth={true}
-              offset={-100}
-              duration={800}
-              className="flex items-center text-slate-400 hover:text-primary-400 transition-colors cursor-pointer"
-            >
-              <span className="mr-2">Back to Top</span>
-              <ArrowUpCircle className="h-5 w-5" />
-            </Link>
-          </div>
+
+        <div className="mt-10 pt-6 border-t border-zinc-800 flex justify-between items-center">
+          <p className="text-xs text-zinc-500"> {new Date().getFullYear()} MVP Makers</p>
+          <Link to="home" spy smooth offset={-100} className="flex items-center gap-1 text-xs text-zinc-500 hover:text-emerald-400 cursor-pointer transition-colors">
+            Top <ArrowUp className="h-3 w-3" />
+          </Link>
         </div>
       </div>
     </footer>
   );
 };
 
-export default Footer
+export default Footer;
