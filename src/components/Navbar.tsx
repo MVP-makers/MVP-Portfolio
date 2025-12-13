@@ -1,142 +1,98 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import { Menu, X, Moon, Sun, Laptop2 } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-// import { useTheme } from '../contexts/ThemeContext';
-import { cn } from '../utils/cn';
 
 const navLinks = [
   { name: 'Home', to: 'home' },
   { name: 'Services', to: 'services' },
+  { name: 'Work', to: 'portfolio' },
+  { name: 'Products', to: 'pawnbroker' },
   { name: 'About', to: 'about' },
-  { name: 'Portfolio', to: 'portfolio' },
-  { name: 'Careers', to: 'careers' },
   { name: 'Contact', to: 'contact' },
 ];
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
     <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm py-4'
-          : 'bg-transparent py-6'
-      )}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800' : 'bg-transparent'
+      }`}
     >
       <div className="container-custom">
-        <nav className="flex items-center justify-between">
-          {/* Logo */}
+        <nav className="flex items-center justify-between h-16">
           <Link
             to="home"
-            spy={true}
-            smooth={true}
+            spy smooth
             offset={-100}
             duration={500}
-            className="flex items-center cursor-pointer"
+            className="text-lg font-bold text-zinc-100 cursor-pointer"
           >
-            <Laptop2 className="h-8 w-8 text-primary-500 mr-2" />
-            <span className="text-xl font-bold">MVP Makers</span>
+            MVP Makers
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.to}
-                spy={true}
-                smooth={true}
+                spy smooth
                 offset={-100}
                 duration={500}
-                className="px-4 py-2 rounded-md text-sm font-medium text-gray-100 hover:text-purple-400 cursor-pointer transition duration-600"
-                activeClass="text-primary-500 dark:text-primary-400"
+                className="px-3 py-2 text-sm text-zinc-400 hover:text-zinc-100 cursor-pointer transition-colors"
+                activeClass="text-zinc-100"
               >
                 {link.name}
               </Link>
             ))}
-            
-            
-            
-            {/* CTA Button */}
             <Link
               to="contact"
-              spy={true}
-              smooth={true}
+              spy smooth
               offset={-100}
               duration={500}
-              className="btn-primary ml-4 cursor-pointer"
+              className="btn-primary ml-4 cursor-pointer text-sm px-4 py-2"
             >
-              Get Started
+              Get in Touch
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden">
-            {/* <button
-              onClick={toggleTheme}
-              className="p-2 mr-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              aria-label="Toggle dark mode"
-            >
-              {theme === 'dark' ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </button> */}
-            <button
-              onClick={toggleMobileMenu}
-              className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
-          </div>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-zinc-400 hover:text-zinc-100"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </nav>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white dark:bg-slate-900 border-t dark:border-slate-800"
+            className="md:hidden bg-zinc-950 border-t border-zinc-800"
           >
-            <div className="container-custom py-4 flex flex-col">
+            <div className="container-custom py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.to}
-                  spy={true}
-                  smooth={true}
+                  spy smooth
                   offset={-100}
                   duration={500}
-                  className="py-3 px-4 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md transition-colors"
-                  activeClass="text-primary-500 dark:text-primary-400 font-medium"
+                  className="py-2 px-3 text-zinc-400 hover:text-zinc-100 rounded-lg hover:bg-zinc-900 transition-colors"
+                  activeClass="text-zinc-100 bg-zinc-900"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
@@ -144,14 +100,13 @@ const Navbar: React.FC = () => {
               ))}
               <Link
                 to="contact"
-                spy={true}
-                smooth={true}
+                spy smooth
                 offset={-100}
                 duration={500}
-                className="btn-primary mt-4 text-center"
+                className="btn-primary mt-2 text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Get Started
+                Get in Touch
               </Link>
             </div>
           </motion.div>
@@ -161,4 +116,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar
+export default Navbar;
